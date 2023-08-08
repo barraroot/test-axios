@@ -2,7 +2,7 @@ import axios from 'axios'
 
 console.log()
 
-axios.defaults.baseURL = 'http://backoffice.everestgames.com.br/api/'
+axios.defaults.baseURL = 'https://backoffice.everestgames.com.br/api/'
 //axios.defaults.withCredentials = true
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.headers.common['crossDomain'] = true
