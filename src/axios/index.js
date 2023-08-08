@@ -2,19 +2,15 @@ import axios from 'axios'
 
 console.log()
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://backoffice.everestgames.com.br/api/' : '/api/'
-axios.defaults.withCredentials = true
+axios.defaults.baseURL = '/api/'//'http://backoffice.everestgames.com.br/api/'
+//axios.defaults.withCredentials = true
 axios.defaults.headers.common['Content-Type'] = 'application/json';
-axios.defaults.headers.common['EVEREST-DASH'] = 'demo.everestgames.com.br';
 axios.defaults.headers.common['crossDomain'] = true
 
 
 
 // Adiciona um interceptador na requisição
 axios.interceptors.request.use(function (config) {
-    //Colocando o tenant para tratar as chamadas
-    const url = require('url');
-    const params = new url.URLSearchParams({ tenant: process.env.VUE_APP_HOST_TENANT });    
 
     // Faz alguma coisa antes da requisição ser enviada
     const token = localStorage.getItem("token");
@@ -22,6 +18,11 @@ axios.interceptors.request.use(function (config) {
     if (token) {
       config.headers["Authorization"] = "Bearer " + token;
     }
+
+    //Colocando o tenant para tratar as chamadas
+    config.params = config.params || {}
+    config.params.tenant = 'demo.everestgames.com.br'
+
     return config;
   }, function (error) {
     // Faz alguma coisa com o erro da requisição

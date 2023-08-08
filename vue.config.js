@@ -3,17 +3,22 @@ const path = require('path')
 
 module.exports = defineConfig({
   transpileDependencies: true,
+  /*
   devServer: {
     proxy: {
       '/api': {
         target: 'https://backoffice.everestgames.com.br/',
         changeOrigin: true,
+        
         headers: {
           'EVEREST-DASH': 'demo.everestgames.com.br'
         }
+        
       }
     }
   },
+  */
+  
   chainWebpack: (config) => {
     config.plugin('copy').tap((entries) => {
       entries[0].patterns.push({
