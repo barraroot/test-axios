@@ -1,4 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
+const path = require('path')
+
 module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
@@ -12,5 +14,18 @@ module.exports = defineConfig({
         }
       }
     }
-  }  
+  },
+  chainWebpack: (config) => {
+    config.plugin('copy').tap((entries) => {
+      entries[0].patterns.push({
+        from: path.resolve(__dirname, 'vercel.json'),
+        to: path.resolve(__dirname, 'dist/'),
+        toType: 'dir',
+        noErrorOnMissing: true,
+        globOptions: { ignore: ['.DS_Store'] },
+      })
+
+      return entries
+    })
+  },   
 })
