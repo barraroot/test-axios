@@ -2,7 +2,7 @@ import axios from 'axios'
 
 console.log()
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://backoffice.everestgames.com.br/api' : '/api'
+//axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://backoffice.everestgames.com.br/api' : '/api'
 //axios.defaults.withCredentials = true
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.headers.common['EVEREST-DASH'] = 'demo.everestgames.com.br';
