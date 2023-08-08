@@ -12,6 +12,10 @@ axios.defaults.headers.common['crossDomain'] = true
 
 // Adiciona um interceptador na requisição
 axios.interceptors.request.use(function (config) {
+    //Colocando o tenant para tratar as chamadas
+    const url = require('url');
+    const params = new url.URLSearchParams({ tenant: process.env.VUE_APP_HOST_TENANT });    
+
     // Faz alguma coisa antes da requisição ser enviada
     const token = localStorage.getItem("token");
 
